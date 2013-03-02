@@ -14,16 +14,28 @@ import com.aravind.project.httputils.HttpConnector;
 import com.aravind.project.httputils.Logger;
 import com.example.sample.model.Video;
 
+/**
+ */
 public class HttpUtility {
 
 	HttpConnector helper;
 	Context context;
 
+	/**
+	 * Constructor for HttpUtility.
+	 * @param context Context
+	 */
 	public HttpUtility(Context context) {
 		this.context = context;
 		helper = new HttpConnector();
 	}
 
+	/**
+	 * Method getYoutubeVideos.
+	 * @param page int
+	 * @param keyword String
+	 * @return List<Video>
+	 */
 	public List<Video> getYoutubeVideos(int page, String keyword) {
 		String result;
 
@@ -40,6 +52,12 @@ public class HttpUtility {
 		return null;
 	}
 
+	/**
+	 * Method getVideos.
+	 * @param result String
+	 * @return List<Video>
+	 * @throws JSONException
+	 */
 	private List<Video> getVideos(String result) throws JSONException {
 		JSONObject tempObject;
 

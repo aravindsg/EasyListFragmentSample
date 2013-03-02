@@ -7,10 +7,16 @@ import android.support.v4.app.FragmentTransaction;
 import com.aravind.project.elf.fragments.BaseAbsListViewHelperFragment.BaseListViewListener;
 import com.example.sample.framents.VideoFragment;
 
+/**
+ */
 public class MainActivity extends FragmentActivity implements BaseListViewListener {
 
 	private static final String VIDEO_FRAGMENT = "VIDEO_FRAGMENT";
 
+	/**
+	 * Method onCreate.
+	 * @param savedInstanceState Bundle
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

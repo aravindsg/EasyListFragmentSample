@@ -22,12 +22,19 @@ import com.example.sample.R;
 import com.example.sample.model.Video;
 import com.example.sample.utils.HttpUtility;
 
+/**
+ */
 public class VideoFragment extends BaseAbsListViewHelperFragment {
 
 	private static final String KEYWORD2 = "KEYWORD";
 	String keyword;
 	final List<Video> videoList = new ArrayList<Video>();
 
+	/**
+	 * Method newInstance.
+	 * @param keyword String
+	 * @return VideoFragment
+	 */
 	public static VideoFragment newInstance(String keyword) {
 
 		VideoFragment fragment = new VideoFragment();
@@ -39,6 +46,13 @@ public class VideoFragment extends BaseAbsListViewHelperFragment {
 		return fragment;
 	}
 
+	/**
+	 * Method onCreateView.
+	 * @param inflater LayoutInflater
+	 * @param container ViewGroup
+	 * @param savedInstanceState Bundle
+	 * @return View
+	 */
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View vw = inflater.inflate(R.layout.fragment_video, null);
@@ -46,6 +60,10 @@ public class VideoFragment extends BaseAbsListViewHelperFragment {
 		return vw;
 	}
 
+	/**
+	 * Method bindAdapter.
+	 * @see com.aravind.project.elf.interfaces.IAbsListViewSetup#bindAdapter()
+	 */
 	@Override
 	public void bindAdapter() {
 		keyword = getArguments().getString(KEYWORD2);
@@ -63,13 +81,24 @@ public class VideoFragment extends BaseAbsListViewHelperFragment {
 
 	}
 
+	/**
+	 * Method callServerApi.
+	 * @see com.aravind.project.elf.interfaces.IAbsListViewSetup#callServerApi()
+	 */
 	@Override
 	public void callServerApi() {
 		new AsyncYoutubeLoader().execute();
 	}
 
+	/**
+	 */
 	private class AsyncYoutubeLoader extends AsyncTask<Void, Boolean, List<Video>> {
 
+		/**
+		 * Method doInBackground.
+		 * @param params Void[]
+		 * @return List<Video>
+		 */
 		@Override
 		protected List<Video> doInBackground(Void... params) {
 
@@ -83,6 +112,10 @@ public class VideoFragment extends BaseAbsListViewHelperFragment {
 			return utility.getYoutubeVideos(endlessScrollListener.getPage(), keyword);
 		}
 
+		/**
+		 * Method onPostExecute.
+		 * @param result List<Video>
+		 */
 		@Override
 		protected void onPostExecute(List<Video> result) {
 
@@ -98,13 +131,28 @@ public class VideoFragment extends BaseAbsListViewHelperFragment {
 
 	}
 
+	/**
+	 */
 	private class MyAdapter extends CustomAdapter {
 
+		/**
+		 * Method getCount.
+		 * @return int
+		 * @see android.widget.Adapter#getCount()
+		 */
 		@Override
 		public int getCount() {
 			return videoList.size();
 		}
 
+		/**
+		 * Method getView.
+		 * @param arg0 int
+		 * @param arg1 View
+		 * @param arg2 ViewGroup
+		 * @return View
+		 * @see android.widget.Adapter#getView(int, View, ViewGroup)
+		 */
 		@Override
 		public View getView(int arg0, View arg1, ViewGroup arg2) {
 
@@ -136,6 +184,8 @@ public class VideoFragment extends BaseAbsListViewHelperFragment {
 		}
 	}
 
+	/**
+	 */
 	static class ViewHolder {
 		TextView tvTitle;
 		ImageView imgBackground;
